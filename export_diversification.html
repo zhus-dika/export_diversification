@@ -38,7 +38,7 @@
     <script>
         function updatePlot() {
             var region = document.getElementById("region").value;
-            fetch(region + ".json")
+            fetch('./' + region + '.json')
                 .then(response => response.json())
                 .then(data => {
                     Plotly.newPlot("plot", data.data, data.layout);
