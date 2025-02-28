@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Экспортная диверсификация</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>Экспортная диверсификация</h1>
+    <label for="region">Выберите регион:</label>
+    <select id="region" onchange="updatePlot()">
+        <option value="Абайская">Абайская</option>
+        <option value="Акмолинская">Акмолинская</option>
+        <option value="Актюбинская">Актюбинская</option>
+        <option value="Алматинская">Алматинская</option>
+        <option value="Атырауская">Атырауская</option>
+        <option value="Восточно-Казахстанская">Восточно-Казахстанская</option>
+        <option value="Жамбылская">Жамбылская</option>
+        <option value="Жетисуская">Жетисуская</option>
+        <option value="Западно-Казахстанская">Западно-Казахстанская</option>
+        <option value="Карагандинская">Карагандинская</option>
+        <option value="Костанайская">Костанайская</option>
+        <option value="Кызылординская">Кызылординская</option>
+        <option value="Мангистауская">Мангистауская</option>
+        <option value="Павлодарская">Павлодарская</option>
+        <option value="Северо-Казахстанская">Северо-Казахстанская</option>
+        <option value="Туркестанская">Туркестанская</option>
+        <option value="Улытауская">Улытауская</option>
+        <option value="г.Алматы">г.Алматы</option>
+        <option value="г.Астана">г.Астана</option>
+        <option value="г.Шымкент">г.Шымкент</option>
+
+    </select>
+    <div id="plot"></div>
+
+    <script>
+        function updatePlot() {
+            var region = document.getElementById("region").value;
+            fetch('./' + region + '.json')
+                .then(response => response.json())
+                .then(data => {
+                    Plotly.newPlot("plot", data.data, data.layout);
+                });
+        }
+        window.onload = updatePlot;
+    </script>
+</body>
+</html>
